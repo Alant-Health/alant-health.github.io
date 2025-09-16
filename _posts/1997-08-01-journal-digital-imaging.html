@@ -1,0 +1,53 @@
+---
+layout: post
+date: 1997-08-01
+title: "An Internet-Connected, Patient-Specific, Deformable Brain Atlas Integrated into a Surgical Navigation System"
+subtitle: "Journal of Digital Imaging - August 1997"
+background: '/img/bg-alanthealth.jpg'
+---
+
+<section>
+  <h1>An Internet-Connected, Patient-Specific, Deformable Brain Atlas Integrated into a Surgical Navigation System</h1>
+  <p>
+    Armond L. Levy, Timothy J. Schaewe, Michael I. Miller, Kurt R. Smith, Abed M. Hammoud, Jaimie M. Henderson, Sarang Joshi, Kevin E. Mark, Christopher D. Sturm, Leslie L. McDurmont, Jr., and Richard D. Bucholz
+  </p>
+  <p>
+    <a href="https://link.springer.com/article/10.1007/BF03168712">Click here to download the paper...</a>
+  </p>
+</section>
+
+<section>
+  <h2>Abstract</h2>
+  <p>
+    Standard anatomic information, such as that contained in atlases, is usually based upon individual human specimens, and therefore it cannot account for structural variability between patients. Thus, utilizing atlas information regarding specific locations and dimensions of anatomic structures could be misleading or incorrect if applied, without complex mapping criteria, to specific patients. This shortcoming is particularly noteworthy in the case of neuroanatomy, where brain structures may be very small, and yet may vary proportionally greatly in size, location, or even existence.
+  </p>
+  <p>
+    The advent of the World Wide Web (WWW) has already begun to affect the practice of medicine, especially the technologically oriented field of neurosurgery. Incorporating the capabilities of the WWW into the operating room setting could permit such advances as intraoperative enrollment into multi-center protocols, remote consultation, and demonstration of surgical techniques. Solutions to the need for patient-specific anatomic information could be greatly enhanced by the advent of informational sources on the WWW. Mapping of patient-specific anatomic structures, pertinent to a particular surgical procedure, to corresponding WWW pages, with real-time access in the operating room, is a powerful new application of this technologic capability.
+  </p>
+</section>
+
+<section>
+  <h2>Methods</h2>
+  <h3>Surgical Navigation System</h3>
+  <p>
+    We have previously developed and employed clinically an optically based frameless surgical navigation system (StealthStation, Surgical Navigation Technologies, Boulder, CO) marketed by Sofamor Danek Group of Memphis, TN. The system consists of a UNIX-based computer workstation (Silicon Graphics Inc, Mountain View, CA) and an infrared optical digitizer (Flashpoint 5000, Image Guided Technologies, Boulder, CO) to display position real-time on a high-resolution monitor. The digitizer uses a charge-coupled camera array suspended from the operating room ceiling to track light-emitting diodes attached to a rigid reference array mounted to a Mayfield head clamp. The position of surgical instruments, modified by the addition of light-emitting diodes, is determined in the coordinate system of the reference array.
+  </p>
+
+  <h3>Image Deformation</h3>
+  <p>
+    An accurate simple overlay of atlas images onto patient radiographs is impossible because of inter-patient geometric anatomic variability. Therefore, the atlas image must be "deformed" to match each individual. A hierarchic algorithm unifying both landmark-based and intensity-based transformations was developed to address this issue. The algorithm creates iterative solutions of a system of elasticity-based partial differential equations (PDE), which are applied as vector fields to the coordinate system of the template (atlas) image.
+  </p>
+  <p>
+    Landmarks and linear manifolds such as sulci are identified in the dataset to serve as manifolds by which the template and target (patient) images are coarsely registered. Next, the full volumetric data are addressed. Both the difference between template and target intensities, and a constraint maintaining the relative structural topology of the template volume, are considered. This constraint is modeled by PDEs derived by modeling elastic deformations. The final transformation is accomplished via a course-to-fine iterative solution of the model-based PDEs on the full volume.
+  </p>
+</section>
+
+<section>
+  <h2>Discussion and Conclusions</h2>
+  <p>
+    We present a patient-specific deformable atlas that is easily integrated into our surgical navigation device. The atlas is a powerful new tool for the integration of information with the surgical act. This is the first time an outline atlas has been implemented to provide individualized, high-resolution data to the operating surgeon. Our basic paradigm allows surgical navigation based upon photographic images, with a resultant great improvement in tissue contrast, and hence discernibility of small brain structures, over the best MR images. As such, this tool will allow preoperative and intraoperative guidance that is superior to any current system.
+  </p>
+  <p>
+    In addition, the introduction of the vast resources of neuroscience into the operating room via the WWW could revolutionize intraoperative decision-making and techniques.
+  </p>
+</section>

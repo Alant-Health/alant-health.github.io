@@ -1,0 +1,23 @@
+title:              Alant Health
+email:              abed@alant.health
+description:        "Fostering Innovation<br>Nurturing Health"
+author:             Alant Health
+baseurl:            ""
+url:                "https://abedhammoud.github.io"
+
+# Social Profiles
+# twitter_username:   SBootstrap
+# github_username:    StartBootstrap
+linkedin_username: dr-abed-hammoud
+
+# Add your Google Analytics ID here to activate Google Analytics
+google_analytics:   UA-116925250-1
+
+# Build settings
+markdown:           kramdown
+paginate:           5
+paginate_path:      "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site

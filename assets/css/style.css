@@ -1,0 +1,14 @@
+.decorative-divider {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.decorative-divider i {
+  font-size: 2rem;
+  color: #007bff; /* Adjust color as needed */
+}
+
+.section-heading {
+  font-weight: bold;
+  margin-top: 1rem;
+}
