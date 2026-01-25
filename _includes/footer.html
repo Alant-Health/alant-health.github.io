@@ -57,7 +57,18 @@
           </li>
           {% endif %} -->
         </ul>
-        <p class="copyright text-muted">Copyright &copy; 2016-{{ 'now' | date: "%Y" }} {{ site.author }} &bull; All rights reserved &bull; Switzerland</p>
+        <p class="copyright text-muted">
+          Copyright &copy; 2016-<span id="copyright-year">{{ 'now' | date: "%Y" }}</span> {{ site.author }} &bull; All rights reserved &bull; Switzerland
+        </p>
+
+        <script>
+          (function () {
+            var el = document.getElementById('copyright-year');
+            if (!el) return;
+            var year = new Date().getFullYear();
+            el.textContent = String(year);
+          })();
+        </script>
       </div>
     </div>
   </div>
