@@ -49,6 +49,8 @@ covering neurotechnology, medtech, and healthcare innovation.
 ├── about.html             # About page
 ├── contact.html           # Contact page
 ├── privacy-policy.html    # Privacy policy
+├── llms.txt               # LLM-friendly site summary (llmstxt.org spec)
+├── AGENT.md               # This file — agent/contributor guidelines
 ├── CNAME                  # Custom domain: www.alant.health
 ├── Gemfile                # Ruby dependencies
 └── posts/                 # Pagination output directory
@@ -74,7 +76,7 @@ YYYY-MM-DD-slug.html
 Examples:
 - `2026-02-25-clee-tech-eu.html`
 - `2025-03-21-clee-venture-kick.html`
-- `2008-11-20-renishaw-acquesition-I.html`
+- `2008-11-20-renishaw-acquisition-i.html`
 
 ### 3.2 Front Matter
 
@@ -236,7 +238,7 @@ to `/img/posts/` rather than hotlinking to external URLs.
 - Hosted on **GitHub Pages**
 - Custom domain: `www.alant.health` (configured via `CNAME`)
 - Push to `main` branch triggers automatic deployment
-- Google Analytics: `UA-116925250-1`
+- Google Analytics: `UA-116925250-1` (legacy Universal Analytics; migrate to GA4 when available)
 
 ---
 
@@ -248,4 +250,24 @@ to `/img/posts/` rather than hotlinking to external URLs.
 4. **Reference images** using absolute paths from root (`/img/posts/...`)
 5. **Add source attribution** at the bottom if content is from an external source
 6. **Use HTML** — not Markdown — for post content
-7. **Test locally** with `bundle exec jekyll serve` if possible before pushing
+7. **Update `llms.txt`** if the post is significant (e.g., a major announcement) — add it to the "Recent News" section
+8. **Test locally** with `bundle exec jekyll serve` if possible before pushing
+
+---
+
+## 10. llms.txt Maintenance
+
+The site includes a `/llms.txt` file following the [llmstxt.org](https://llmstxt.org/) specification.
+This file helps AI models understand the site's content at inference time.
+
+**When to update `llms.txt`:**
+- When a significant news item or press release is added (update the "Recent News" section)
+- When board roles, expertise areas, or professional track record changes
+- When new pages are added to the site
+- Keep "Recent News" to the 3–5 most notable items
+
+**Format rules** (per llmstxt.org spec):
+- H1: Site name (required, do not change)
+- Blockquote: Site summary (required)
+- H2 sections: Categorized link lists with `[name](url): description` format
+- "Optional" H2 section: Content LLMs can skip for shorter context
