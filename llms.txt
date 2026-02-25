@@ -1,0 +1,61 @@
+# Alant Health
+
+> Alant Health is a Switzerland-based strategic and operational advisory firm specializing in healthcare technology, founded by Abed Hammoud. The firm provides data-driven advisory services across medical technology, medical imaging, surgical navigation, neuromodulation, neurosurgical robotics, and epilepsy surgery. The name "Alant" derives from the Latin verb *alō*, meaning to foster, nourish, and develop.
+
+Alant Health's founder, Abed Hammoud, has over 30 years of experience in medtech leadership, including founding roles at four successfully exited companies. He is a senior IEEE member and a member of the Deep Brain Stimulation (DBS) Society.
+
+Key facts:
+
+- **Location:** Switzerland
+- **Founded by:** Abed Hammoud
+- **Contact:** abed@alant.health
+- **Website:** https://www.alant.health
+- **LinkedIn:** https://www.linkedin.com/in/dr-abed-hammoud/
+
+## Expertise
+
+- Medical technology strategy and operations
+- Medical imaging (MRI, CT, Optical Coherence Tomography)
+- Surgical navigation (image-guided neurosurgery)
+- Medical devices and neuromodulation (deep brain stimulation)
+- Neurosurgical robotics
+- Epilepsy surgery technologies
+- Machine learning and data analytics for healthcare
+- Technology transfer and clinical trials
+- Corporate turnarounds and M&A in medtech
+
+## Professional Track Record
+
+- **Surgical Navigation Technologies Inc.** — Founding member and senior engineer of the StealthStation™ image-guided surgical navigation platform; acquired by Sofamor-Danek/Medtronic (NYSE:MDT) in 1996
+- **IntellX LLC** — Founding member and senior engineer of cloud-based patient-specific brain segmentation and mapping technology; acquired by Medtronic in 1999
+- **Medtronic ACTIVA™** — Clinical solutions and business development for deep brain stimulation (DBS) neuromodulation therapy
+- **DIXI Medical SAS** — Senior VP of sales and marketing (Directeur Commercial), leading the global commercial organization of a neurosurgical implantable devices company for epilepsy surgery
+- **Schaerer Swiss surgical tables** — Interim managing director; managed acquisition by a private equity group in 2007
+- **Renishaw Mayfield SA** — Founding member and CEO of the NeuroMate® neurosurgical robot division; led the company's acquisition by Renishaw (LSE:RSW, FTSE 250) in 2008; served as CEO until 2018
+
+## Current Board Roles
+
+- **Clee Medical** (2024–present) — Board member. Swiss neurotechnology startup developing ultra-high-resolution real-time intraoperative Optical Coherence Tomography (OCT) imaging for precision neurosurgery. Co-founded by Matt Lapinski and Abed Hammoud in October 2024. Website: https://www.cleemedical.com
+- **Cascador Health** (2023–present) — Chair of the board. Belgian healthtech company creating an ecosystem of healthcare data providers and users. Website: https://cascador.health
+
+## Past Board Roles
+
+- **G-Ray** (2017–2020) — Board member. Swiss company specializing in advanced x-ray imaging technologies for medical imaging, aerospace, and security
+- **Renishaw Ireland** (2011–2017) — Board member. Global high-precision metrology and healthcare technology group
+
+## Pages
+
+- [Home](https://www.alant.health/): Professional profile, experience summary, and latest news
+- [About](https://www.alant.health/about): Company expertise areas and etymology of the name "Alant"
+- [Contact](https://www.alant.health/contact): Contact form for inquiries
+- [News](https://www.alant.health/posts): Press releases, announcements, and industry news
+
+## Recent News
+
+- [Clee Medical secures seed funding for real-time brain imaging](https://www.alant.health/2026/02/25/clee-tech-eu.html): Clee Medical closed its seed round led by High-Tech Gründerfonds (HTGF), with participation from ZKB, Kickfund, FONGIT, and Venture Kick (February 2026)
+- [Alant Health and WVU Rockefeller Neuroscience Institute collaboration](https://www.alant.health/2025/04/29/rockefeller-alant.html): Strategic collaboration for technology transfer, business development, and clinical trials in neuromodulation (April 2025)
+- [Clee Medical wins CHF 150,000 from Venture Kick](https://www.alant.health/2025/03/21/clee-venture-kick.html): Third-stage Venture Kick award to advance neurosurgical technology (March 2025)
+
+## Optional
+
+- [Privacy Policy](https://www.alant.health/privacy-policy): Data handling and cookie policies
