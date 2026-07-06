@@ -103,7 +103,8 @@ header.masthead {
 
 // Closing call-to-action band
 .cta-band {
-  margin: 3.5rem 0 0.5rem;
+  clear: both;
+  margin: 5rem 0 0.5rem;
   padding: clamp(2rem, 5vw, 3rem);
   background: rgba(0, 86, 179, 0.06);
   border: 1px solid rgba(0, 86, 179, 0.12);
