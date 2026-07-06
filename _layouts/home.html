@@ -65,6 +65,18 @@ layout: default
           <a class="btn btn-primary float-right" href="{{"/posts" | relative_url }}">View More News &rarr;</a>
         </div>
 
+        <!-- Closing call to action -->
+        <section class="cta-band text-center">
+          <h2 class="cta-title">Building something in MedTech?</h2>
+          <p class="cta-text">From early-stage innovation to commercialization and exit &mdash; let&rsquo;s talk about how Alant Health can help.</p>
+          <div class="cta-actions">
+            <a class="btn btn-primary btn-lg" href="{{ "/contact" | relative_url }}">Get in touch</a>
+            {% if site.linkedin_username %}
+            <a class="btn btn-outline-primary btn-lg" href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+            {% endif %}
+          </div>
+        </section>
+
       </div>
     </div>
   </div>
