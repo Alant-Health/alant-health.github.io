@@ -1,2 +1,131 @@
 // Import Core Clean Blog SCSS
 @import "../assets/vendor/startbootstrap-clean-blog/scss/styles.scss";
+
+// ---------------------------------------------------------------------------
+// Alant Health custom styles
+// (moved out of the inline <style> block that previously lived in index.html)
+// ---------------------------------------------------------------------------
+
+// Hero: tighter vertical rhythm + gradient overlay for reliable text contrast
+header.masthead {
+  .overlay {
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+    opacity: 1;
+  }
+
+  .page-heading {
+    padding: 150px 0 110px;
+
+    @media only screen and (min-width: 768px) {
+      padding: 170px 0;
+    }
+  }
+}
+
+// Intro highlight card
+.intro-highlight {
+  background-color: rgba(240, 248, 255, 0.8);
+  border: 1px solid #ddd;
+  border-left: 5px solid #0056b3;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left-color: #004494;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+}
+
+.section-heading {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+hr.small {
+  max-width: 100px;
+  margin: 15px auto 25px 0;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.professional-experience li,
+.board-roles li {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+// Scoped to the homepage intro section so these bare-element rules
+// don't bleed onto other pages.
+#about {
+  ul {
+    padding-left: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: #444;
+    font-weight: 500;
+  }
+}
+
+// Key-metrics row
+.stat-card {
+  padding: 1rem 0.5rem;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #0056b3;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+@media only screen and (max-width: 575px) {
+  .stat-number {
+    font-size: 2.1rem;
+  }
+}
+
+// Trust / partner wordmark strip
+.logo-strip-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem 2.5rem;
+
+  span {
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+}

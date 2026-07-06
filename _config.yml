@@ -1,6 +1,8 @@
 title:              Alant Health
 email:              abed@alant.health
 description:        "Fostering Innovation<br>Nurturing Health"
+# Plain-text description used for SEO/social meta (no HTML). ~150 chars.
+seo_description:    "Alant Health is a data-driven MedTech advisory firm led by Dr. Abed Hammoud, advising on strategy, commercialization, and innovation across surgical navigation, medical imaging, neurosurgical robotics, neuromodulation, and epilepsy surgery."
 author:             Alant Health
 baseurl:            ""
 url:                "https://www.alant.health"
@@ -10,8 +12,10 @@ url:                "https://www.alant.health"
 # github_username:    StartBootstrap
 linkedin_username: dr-abed-hammoud
 
-# Add your Google Analytics ID here to activate Google Analytics
-google_analytics:   UA-116925250-1
+# Google Analytics 4 — paste your Measurement ID (G-XXXXXXXXXX) to activate tracking.
+# NOTE: the old Universal Analytics property (UA-116925250-1) stopped collecting
+# data in July 2023, so it has been retired here.
+google_analytics4:  ""
 
 # Build settings
 markdown:           kramdown
