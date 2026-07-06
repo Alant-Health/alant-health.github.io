@@ -15,7 +15,7 @@ linkedin_username: dr-abed-hammoud
 # Google Analytics 4 — paste your Measurement ID (G-XXXXXXXXXX) to activate tracking.
 # NOTE: the old Universal Analytics property (UA-116925250-1) stopped collecting
 # data in July 2023, so it has been retired here.
-google_analytics4:  ""
+google_analytics4:  "G-TDH2YZ8VEY"
 
 # Build settings
 markdown:           kramdown
