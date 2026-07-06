@@ -1,0 +1,63 @@
+{% if site.google_analytics4 %}
+<!-- Cookie consent banner + Google Analytics 4 (loaded only after the visitor accepts) -->
+<div id="cookie-consent" class="cookie-consent" role="region" aria-label="Cookie consent" hidden>
+  <div class="cookie-consent__inner container">
+    <p class="cookie-consent__text">
+      We use cookies to measure site traffic with Google Analytics. Nothing is collected until you accept.
+      Read our <a href="{{ '/privacy-policy' | relative_url }}">Privacy Policy</a>.
+    </p>
+    <div class="cookie-consent__actions">
+      <button type="button" class="btn btn-outline-secondary btn-sm" id="cookie-decline">Decline</button>
+      <button type="button" class="btn btn-primary btn-sm" id="cookie-accept">Accept</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var GA_ID = '{{ site.google_analytics4 }}';
+    var STORAGE_KEY = 'ah-cookie-consent';
+    var loaded = false;
+
+    function loadGA() {
+      if (loaded || !GA_ID) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    }
+
+    function remember(value) {
+      try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
+    }
+
+    var banner = document.getElementById('cookie-consent');
+    var stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+
+    if (stored === 'granted') {
+      loadGA();
+    } else if (stored !== 'denied' && banner) {
+      banner.hidden = false; // no choice recorded yet
+    }
+
+    var accept = document.getElementById('cookie-accept');
+    var decline = document.getElementById('cookie-decline');
+    if (accept) accept.addEventListener('click', function () {
+      remember('granted');
+      if (banner) banner.hidden = true;
+      loadGA();
+    });
+    if (decline) decline.addEventListener('click', function () {
+      remember('denied');
+      if (banner) banner.hidden = true;
+    });
+  })();
+</script>
+{% endif %}
