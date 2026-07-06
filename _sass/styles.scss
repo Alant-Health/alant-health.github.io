@@ -22,33 +22,82 @@ header.masthead {
   }
 }
 
-// Intro highlight card
-.intro-highlight {
-  background-color: rgba(240, 248, 255, 0.8);
-  border: 1px solid #ddd;
-  border-left: 5px solid #0056b3;
-  padding: 25px 30px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  margin-bottom: 30px;
-  transition: all 0.3s ease;
+// Homepage intro — centered brand statement
+.intro-statement {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
 
-  &:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-left-color: #004494;
+.intro-mission {
+  margin: 0;
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0056b3;
+}
+
+.intro-thesis {
+  margin: 0; // Lora, inherited from body
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1.32;
+  color: #2a2f36;
+
+  strong {
+    font-weight: 700;
   }
+}
 
-  .lead {
-    font-size: 1.25rem;
-    font-weight: 400;
-    margin-bottom: 0;
+.intro-support {
+  max-width: 60ch;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #6c757d;
+}
+
+.intro-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.intro-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0056b3;
+  background: rgba(0, 86, 179, 0.08);
+  border: 1px solid rgba(0, 86, 179, 0.16);
+  padding: 0.4em 0.9em;
+  border-radius: 999px;
+
+  &::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #0056b3;
+    flex: none;
   }
+}
 
-  .affiliations {
-    margin-top: 0.85rem;
-    padding-top: 0.85rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    letter-spacing: 0.01em;
+@media only screen and (max-width: 575px) {
+  .intro-thesis {
+    font-size: 1.35rem;
   }
 }
 
