@@ -287,6 +287,72 @@ hr.small {
   }
 }
 
+// About page — narrative intro ("Our Story")
+.about-narrative {
+  max-width: 70ch;
+
+  p {
+    margin: 0 0 1rem;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: #4a525b;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  strong {
+    color: #232830;
+    font-weight: 700;
+  }
+}
+
+// About page — name story laid out beside a botanical illustration
+.name-story {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.name-story__visual {
+  margin: 0;
+  text-align: center;
+  color: #0056b3;
+}
+
+.name-visual-caption {
+  margin-top: 0.4rem;
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8a929b;
+
+  em {
+    font-style: italic;
+    text-transform: none;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .name-story {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .name-story__visual {
+    order: -1;
+    justify-self: center;
+
+    svg {
+      width: 130px;
+      height: auto;
+    }
+  }
+}
+
 // Key-metrics row
 .stat-card {
   padding: 1rem 0.5rem;
