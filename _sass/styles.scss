@@ -95,6 +95,12 @@ header.masthead {
   }
 }
 
+// Left-aligned chip row (used on content pages, where the column is left-aligned
+// rather than the homepage's centered intro block)
+.intro-chips--start {
+  justify-content: flex-start;
+}
+
 @media only screen and (max-width: 575px) {
   .intro-thesis {
     font-size: 1.35rem;
@@ -239,6 +245,13 @@ hr.small {
   margin: 0.55rem 0 0;
   font-family: $headings-font-family; // Open Sans
   font-size: 0.78rem;
+  color: #8a929b;
+}
+
+// Muted attribution/source note trailing an exp-desc (e.g. dictionary citations)
+.exp-source {
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.8rem;
   color: #8a929b;
 }
 
