@@ -234,6 +234,14 @@ hr.small {
   color: #6c757d;
 }
 
+// Byline for News entries (author · read time)
+.exp-meta {
+  margin: 0.55rem 0 0;
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.78rem;
+  color: #8a929b;
+}
+
 .exp-group + .exp-group {
   margin-top: 2.1rem;
 }

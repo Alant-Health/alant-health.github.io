@@ -29,39 +29,30 @@ layout: default
 
         {{ content }}
 
-        <!-- Decorative Divider & Company News Section Header -->
-        <hr class="bold-divider">
-                  <h2 class="section-heading text-center">News &amp; Updates</h2>
+        <!-- Company News Section -->
+        <h2 class="section-heading">News &amp; Updates</h2>
+        <hr class="small">
 
         <!-- Home Post List -->
-        {% for post in site.posts limit : 5 %}
-
-        <article class="post-preview">
-          <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-            <h3 class="post-title">{{ post.title }}</h3>
-            {% if post.subtitle %}
-            <h4 class="post-subtitle">{{ post.subtitle }}</h4>
-            {% else %}
-            <h4 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h4>
-            {% endif %}
-          </a>
-          <p class="post-meta">Posted by
-            {% if post.author %}
-            {{ post.author }}
-            {% else %}
-            {{ site.author }}
-            {% endif %}
-            on
-            {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}
-          </p>
-        </article>
-
-        <hr>
-
-        {% endfor %}
+        <div class="exp-list">
+          {% for post in site.posts limit: 5 %}
+          <div class="exp-entry">
+            <div class="exp-period">{{ post.date | date: '%b %-d, %Y' }}</div>
+            <div class="exp-body">
+              <h3 class="exp-title"><a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title }}</a></h3>
+              {% if post.subtitle %}
+              <p class="exp-desc">{{ post.subtitle }}</p>
+              {% else %}
+              <p class="exp-desc">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+              {% endif %}
+              <p class="exp-meta">{{ post.author | default: site.author }} &middot; {% include read_time.html content=post.content %}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
 
         <!-- Pager -->
-        <div class="clearfix mb-2">
+        <div class="clearfix mb-2 mt-4">
           <a class="btn btn-outline-primary float-right" href="{{"/posts" | relative_url }}">View More News &rarr;</a>
         </div>
 
