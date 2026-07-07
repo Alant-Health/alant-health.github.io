@@ -135,35 +135,134 @@ header.masthead {
 }
 
 .section-heading {
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+  font-family: $font-family-base; // Lora — matches the intro voice
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #232830;
+  margin-bottom: 0.75rem;
 }
 
+// Short accent rule under section headings
 hr.small {
-  max-width: 100px;
-  margin: 15px auto 25px 0;
-  border-width: 2px;
-  border-color: rgba(0, 0, 0, 0.1);
+  width: 44px;
+  max-width: 44px;
+  height: 3px;
+  margin: 0 0 1.6rem;
+  background: #0056b3;
+  border: 0;
+  border-radius: 3px;
+  opacity: 1;
 }
 
-.professional-experience li,
-.board-roles li {
-  margin-bottom: 1rem;
-  line-height: 1.7;
+// Experience sections — meta-row entries
+.exp-lead {
+  margin: 0 0 1.6rem;
+  color: #6c757d;
+  font-size: 1rem;
 }
 
-// Scoped to the homepage intro section so these bare-element rules
-// don't bleed onto other pages.
-#about {
-  ul {
-    padding-left: 1.2rem;
+.exp-entry {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.75rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid #e8ebef;
+}
+
+.exp-entry:first-child {
+  border-top: 0;
+  padding-top: 0.25rem;
+}
+
+.exp-period {
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0056b3;
+  line-height: 1.5;
+}
+
+.exp-title {
+  font-family: $font-family-base; // Lora
+  font-size: 1.14rem;
+  font-weight: 700;
+  color: #232830;
+  margin: 0 0 0.15rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
   }
 
-  h3 {
-    font-size: 1.5rem;
-    color: #444;
-    font-weight: 500;
+  a:hover {
+    border-bottom-color: #0056b3;
+  }
+
+  .exp-place {
+    font-family: $headings-font-family;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+}
+
+.exp-role {
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.9rem;
+  color: #5f6b76;
+  margin: 0 0 0.55rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+  }
+
+  a:hover {
+    border-bottom-color: #0056b3;
+  }
+}
+
+.exp-desc {
+  max-width: 64ch;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #6c757d;
+}
+
+.exp-group + .exp-group {
+  margin-top: 2.1rem;
+}
+
+.exp-group-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.9rem;
+  font-family: $headings-font-family; // Open Sans
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #232830;
+
+  &::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    background: #0056b3;
+    flex: none;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .exp-entry {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
   }
 }
 
