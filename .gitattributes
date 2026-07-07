@@ -1,0 +1,20 @@
+# Normalize line endings: text files use LF in the repository and the working
+# tree, regardless of contributors' core.autocrlf setting. This prevents the
+# recurring CRLF drift that made the whole tree show as "modified".
+* text=auto eol=lf
+
+# Shell scripts must stay LF.
+*.sh text eol=lf
+
+# Treat common binary types as binary so they are never normalized.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.woff  binary
+*.woff2 binary
+*.ttf  binary
+*.eot  binary
+*.pdf  binary
