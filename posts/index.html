@@ -5,30 +5,24 @@ description: "Fostering Innovation<br>Nurturing Health"
 background: '/img/bg-alanthealth.jpg'
 ---
 
+<div class="exp-list">
 {% for post in paginator.posts %}
 
-<article class="post-preview">
-  <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-    <h2 class="post-title">{{ post.title }}</h2>
+<div class="exp-entry">
+  <div class="exp-period">{{ post.date | date: '%b %-d, %Y' }}</div>
+  <div class="exp-body">
+    <h2 class="exp-title"><a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title }}</a></h2>
     {% if post.subtitle %}
-    <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+    <p class="exp-desc">{{ post.subtitle }}</p>
     {% else %}
-    <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
+    <p class="exp-desc">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
     {% endif %}
-  </a>
-  <p class="post-meta">Posted by
-    {% if post.author %}
-    {{ post.author }}
-    {% else %}
-    {{ site.author }}
-    {% endif %}
-    on {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}
-  </p>
-</article>
-
-<hr>
+    <p class="exp-meta">{{ post.author | default: site.author }} &middot; {% include read_time.html content=post.content %}</p>
+  </div>
+</div>
 
 {% endfor %}
+</div>
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
