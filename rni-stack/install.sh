@@ -2,15 +2,20 @@
 # rni-stack installer
 #
 # Usage:
-#   curl -sSL https://www.alant.health/rni-stack/install.sh | bash
+#   curl -sSL https://www.alant.health/rni-stack/install.sh | RNI_LICENSE_KEY=<key> bash
 #
-# RNI_DEPLOY_TOKEN must be set before running — set it once as a persistent
-# environment variable (see installation docs). Stdin is occupied by the
-# script itself when piped, so interactive prompts are not possible.
+# Your Alant license key is the only credential you need: the installer reads
+# the package-index token from the license, installs rni-stack, and writes the
+# key to ~/.alant.license so every Alant application on this machine is
+# licensed.  Stdin is occupied by the script itself when piped, so interactive
+# prompts are not possible.
 set -euo pipefail
 
-FURY_INDEX="https://${RNI_DEPLOY_TOKEN:-}@rni.fury.site/pypi/"
+FURY_HOST="rni.fury.site"
 FIND_LINKS="https://github.com/SimpleITK/SimpleITK/releases/tag/latest"
+# Alant Health's license account (a public identifier, not a secret).
+KEYGEN_ACCOUNT="319ec55f-0bda-4593-8ddc-3b1ad2b0068d"
+LICENSE_FILE="$HOME/.alant.license"
 
 # --------------------------------------------------------------------------- #
 # Guards
@@ -25,11 +30,36 @@ case "$OS" in
         ;;
 esac
 
-if [ -z "${RNI_DEPLOY_TOKEN:-}" ]; then
-    echo "error: RNI_DEPLOY_TOKEN is not set." >&2
-    echo "usage: RNI_DEPLOY_TOKEN=<token> curl -sSL https://rni.fury.site/install.sh | bash" >&2
+# --------------------------------------------------------------------------- #
+# Credentials: the license key yields the package-index token
+# --------------------------------------------------------------------------- #
+
+LICENSE_KEY="${RNI_LICENSE_KEY:-}"
+if [ -z "$LICENSE_KEY" ]; then
+    echo "error: RNI_LICENSE_KEY is not set." >&2
+    echo "usage: curl -sSL https://www.alant.health/rni-stack/install.sh | RNI_LICENSE_KEY=<key> bash" >&2
     exit 1
 fi
+
+echo "==> Reading the package-index token from your license..."
+if ! response="$(curl -sS --fail \
+    -H "Accept: application/vnd.api+json" \
+    -H "Authorization: License ${LICENSE_KEY}" \
+    "https://api.keygen.sh/v1/accounts/${KEYGEN_ACCOUNT}/licenses/${LICENSE_KEY}")"; then
+    echo "error: the license server rejected this key." >&2
+    exit 1
+fi
+# The metadata is compact JSON: the rni index token, else the family one.
+DEPLOY_TOKEN="$(printf '%s' "$response" | sed -nE 's/.*"rniDeployToken":"([^"]+)".*/\1/p')"
+if [ -z "$DEPLOY_TOKEN" ]; then
+    DEPLOY_TOKEN="$(printf '%s' "$response" | sed -nE 's/.*"deployToken":"([^"]+)".*/\1/p')"
+fi
+if [ -z "$DEPLOY_TOKEN" ]; then
+    echo "error: this license carries no package-index token (rniDeployToken). Contact your administrator." >&2
+    exit 1
+fi
+
+FURY_INDEX="https://${DEPLOY_TOKEN}@${FURY_HOST}/pypi/"
 
 # --------------------------------------------------------------------------- #
 # uv
@@ -55,19 +85,27 @@ fi
 # rni-stack
 # --------------------------------------------------------------------------- #
 
-if command -v rni >/dev/null 2>&1; then
-    echo "==> Upgrading rni-stack..."
-    uv tool upgrade rni-stack \
-        --index "$FURY_INDEX" \
-        --prerelease=allow \
-        --find-links "$FIND_LINKS"
-else
-    echo "==> Installing rni-stack..."
-    uv tool install rni-stack \
-        --index "$FURY_INDEX" \
-        --prerelease=allow \
-        --find-links "$FIND_LINKS"
-fi
+echo "==> Installing / upgrading rni-stack..."
+# A 3-day "soak" guards against a just-published *public* dependency that turns
+# out broken — but the private packages (rni-stack, itxpy, alant-auth) are ours
+# and don't need it, so they are exempted (`PACKAGE=false`) to install/upgrade
+# to the latest immediately.
+uv tool install --upgrade rni-stack \
+    --exclude-newer P3D \
+    --exclude-newer-package rni-stack=false \
+    --exclude-newer-package itxpy=false \
+    --exclude-newer-package alant-auth=false \
+    --index "$FURY_INDEX" \
+    --prerelease=allow \
+    --find-links "$FIND_LINKS"
+
+# --------------------------------------------------------------------------- #
+# License
+# --------------------------------------------------------------------------- #
+
+echo "==> Saving your license key to ${LICENSE_FILE}..."
+(umask 077 && printf 'KEY=%s\n' "$LICENSE_KEY" > "$LICENSE_FILE")
+chmod 600 "$LICENSE_FILE"
 
 # --------------------------------------------------------------------------- #
 # Post-install
@@ -76,9 +114,10 @@ fi
 echo ""
 echo "rni-stack installed. Next steps:"
 echo ""
-echo "  1. Activate your license:"
-echo "       rni license setup"
+echo "  1. Check your license:"
+echo "       rni license verify"
 echo ""
 echo "  2. Add shell completion to ~/.bashrc or ~/.zshrc:"
+# shellcheck disable=SC2016  # intentional: print literal, not expand
 echo '       eval "$(rni generate-shell-completion bash)"'
 echo ""
