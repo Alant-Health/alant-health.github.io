@@ -54,15 +54,10 @@ fi
 # exeed
 # --------------------------------------------------------------------------- #
 
-if command -v iexeed >/dev/null 2>&1; then
-    echo "==> Upgrading exeed..."
-    uv tool upgrade exeed \
-        --index "$ALANT_INDEX"
-else
-    echo "==> Installing exeed..."
-    uv tool install exeed \
-        --index "$ALANT_INDEX"
-fi
+echo "==> Installing / upgrading exeed..."
+uv tool install --upgrade exeed \
+    --exclude-newer P3D \
+    --index "$ALANT_INDEX"
 
 # --------------------------------------------------------------------------- #
 # Post-install

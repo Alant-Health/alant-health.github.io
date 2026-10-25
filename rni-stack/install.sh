@@ -97,17 +97,9 @@ elif [ "$status" -ne 0 ]; then
     echo "error: could not reach the license server (curl exit ${status})." >&2
     exit 1
 fi
-# The metadata is compact JSON: the rni index token, else the family one.
-DEPLOY_TOKEN="$(printf '%s' "$response" | sed -nE 's/.*"rniDeployToken":"([^"]+)".*/\1/p')"
-if [ -z "$DEPLOY_TOKEN" ]; then
-    DEPLOY_TOKEN="$(printf '%s' "$response" | sed -nE 's/.*"deployToken":"([^"]+)".*/\1/p')"
-fi
-if [ -z "$DEPLOY_TOKEN" ]; then
-    echo "error: this license carries no package-index token (rniDeployToken). Contact your administrator." >&2
-    exit 1
-fi
-
-FURY_INDEX="https://${DEPLOY_TOKEN}@${FURY_HOST}/pypi/"
+# The token is read from the response once Python is available (below): the
+# server's JSON layout is its own choice, so it is parsed as JSON, never
+# pattern-matched.
 
 # --------------------------------------------------------------------------- #
 # uv
@@ -137,6 +129,28 @@ if ! uv python find 3.14 >/dev/null 2>&1; then
     echo "==> Installing Python 3.14..."
     uv python install 3.14
 fi
+
+# The package-index token: data.attributes.metadata's rni token, else the
+# family one.  The response goes in on stdin, never on a command line.
+DEPLOY_TOKEN="$(uv run --no-project --python 3.14 python -c '
+import json, sys
+try:
+    doc = json.load(sys.stdin)
+except ValueError:
+    doc = {}
+data = doc.get("data") if isinstance(doc, dict) else None
+attributes = data.get("attributes") if isinstance(data, dict) else None
+meta = attributes.get("metadata") if isinstance(attributes, dict) else None
+meta = meta if isinstance(meta, dict) else {}
+token = meta.get("rniDeployToken") or meta.get("deployToken") or ""
+print(token if isinstance(token, str) else "")
+' <<<"$response")"
+if [ -z "$DEPLOY_TOKEN" ]; then
+    echo "error: this license carries no package-index token (rniDeployToken). Contact your administrator." >&2
+    exit 1
+fi
+
+FURY_INDEX="https://${DEPLOY_TOKEN}@${FURY_HOST}/pypi/"
 
 # --------------------------------------------------------------------------- #
 # rni-stack
@@ -179,8 +193,12 @@ uv tool install --upgrade rni-stack \
 # --------------------------------------------------------------------------- #
 
 echo "==> Saving your license key to ${LICENSE_FILE}..."
-(umask 077 && printf 'KEY=%s\n' "$LICENSE_KEY" > "$LICENSE_FILE")
-chmod 600 "$LICENSE_FILE"
+# Written to a private temporary file (mktemp creates it 0600) and renamed into
+# place, so a symlink at the license path is replaced, never written through,
+# and no reader sees a half-written file -- as alant-auth's save_license does.
+license_tmp="$(mktemp "${LICENSE_FILE}.XXXXXX")"
+printf 'KEY=%s\n' "$LICENSE_KEY" > "$license_tmp"
+mv -f "$license_tmp" "$LICENSE_FILE"
 
 # --------------------------------------------------------------------------- #
 # Post-install

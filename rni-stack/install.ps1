@@ -122,6 +122,10 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
         "$env:USERPROFILE\.local\bin"
     }
     $env:PATH = "$uvBin;$env:PATH"
+    if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
+        Write-Error 'error: uv could not be installed; see the messages above.'
+        exit 1
+    }
 } else {
     # An existing uv keeps every fix it predates, so refresh it before it
     # installs anything. Best-effort: a uv installed by a package manager
@@ -144,10 +148,17 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
 # Python 3.14
 # --------------------------------------------------------------------------- #
 
+# A native command's failure is not a PowerShell error, even under
+# $ErrorActionPreference = 'Stop', so every uv step that must succeed checks
+# its own exit code before the next one runs.
 $uvPythonFind = uv python find 3.14 2>&1
 if ($LASTEXITCODE -ne 0) {
     Write-Host '==> Installing Python 3.14...'
     uv python install 3.14
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "error: Python 3.14 could not be installed (uv exit $LASTEXITCODE)."
+        exit 1
+    }
 }
 
 # --------------------------------------------------------------------------- #
@@ -174,13 +185,23 @@ uv tool install --upgrade rni-stack `
     --index $FuryIndex `
     @PrereleaseArgs `
     "--find-links=$FindLinks"
+if ($LASTEXITCODE -ne 0) {
+    Write-Error ("error: rni-stack could not be installed (uv exit $LASTEXITCODE); " +
+        'your license key was not saved.')
+    exit 1
+}
 
 # --------------------------------------------------------------------------- #
 # License
 # --------------------------------------------------------------------------- #
 
 Write-Host "==> Saving your license key to $LicenseFile..."
-[IO.File]::WriteAllText($LicenseFile, "KEY=$LicenseKey`n")
+# Written beside the target and moved into place, so a link at the license
+# path is replaced, never written through, and no reader sees a half-written
+# file -- as alant-auth's save_license does.
+$LicenseTmp = "$LicenseFile.$PID.tmp"
+[IO.File]::WriteAllText($LicenseTmp, "KEY=$LicenseKey`n")
+Move-Item -LiteralPath $LicenseTmp -Destination $LicenseFile -Force
 
 # --------------------------------------------------------------------------- #
 # Post-install

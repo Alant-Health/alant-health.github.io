@@ -52,15 +52,10 @@ if ($LASTEXITCODE -ne 0) {
 # exeed
 # --------------------------------------------------------------------------- #
 
-if (Get-Command iexeed -ErrorAction SilentlyContinue) {
-    Write-Host '==> Upgrading exeed...'
-    uv tool upgrade exeed `
-        --index $AlantIndex
-} else {
-    Write-Host '==> Installing exeed...'
-    uv tool install exeed `
-        --index $AlantIndex
-}
+Write-Host '==> Installing / upgrading exeed...'
+uv tool install --upgrade exeed `
+    --exclude-newer P3D `
+    --index $AlantIndex
 
 # --------------------------------------------------------------------------- #
 # Post-install
