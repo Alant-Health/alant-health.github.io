@@ -182,6 +182,7 @@ uv tool install --upgrade rni-stack `
     --exclude-newer-package rni-stack=false `
     --exclude-newer-package itxpy=false `
     --exclude-newer-package alant-auth=false `
+    --exclude-newer-package rni-templates=false `
     --index $FuryIndex `
     @PrereleaseArgs `
     "--find-links=$FindLinks"

@@ -176,14 +176,15 @@ case "${uv_major}.${uv_minor}" in
         ;;
 esac
 # A 3-day "soak" guards against a just-published *public* dependency that turns
-# out broken — but the private packages (rni-stack, itxpy, alant-auth) are ours
-# and don't need it, so they are exempted (`PACKAGE=false`) to install/upgrade
-# to the latest immediately.
+# out broken — but the private packages (rni-stack, itxpy, alant-auth,
+# rni-templates) are ours and don't need it, so they are exempted
+# (`PACKAGE=false`) to install/upgrade to the latest immediately.
 uv tool install --upgrade rni-stack \
     --exclude-newer P3D \
     --exclude-newer-package rni-stack=false \
     --exclude-newer-package itxpy=false \
     --exclude-newer-package alant-auth=false \
+    --exclude-newer-package rni-templates=false \
     --index "$FURY_INDEX" \
     ${PRERELEASE_FLAG:+"$PRERELEASE_FLAG"} \
     --find-links "$FIND_LINKS"
