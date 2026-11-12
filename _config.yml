@@ -25,3 +25,16 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
+# Kept out of the published site. Under Jekyll 3 (GitHub Pages) a custom list
+# replaces the built-in one, so the built-in entries are repeated after the
+# agent-instruction files.
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
